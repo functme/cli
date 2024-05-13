@@ -1,0 +1,27 @@
+{
+  "name": "funct.me",
+  "version": "0.0.1",
+  "description": "Funct.me Command Line Interface",
+  "main": "index.js",
+  "files": [
+    "/commands",
+    "/helpers",
+    "/src"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "funct": "index.js"
+  },
+  "author": "Keith Horwood",
+  "license": "MIT",
+  "dependencies": {
+    "cmnd": "^0.4.1",
+    "colors": "^1.4.0",
+    "i": "^0.3.7",
+    "inquirer": "^8.2.6",
+    "semver": "^7.5.4"
+  },
+  "keywords": []
+}

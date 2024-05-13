@@ -1,0 +1,15 @@
+{
+  "name": "@/not_npm_project",
+  "private": false,
+  "scripts": {
+    "start": "node funct.mjs",
+    "test": "mocha test/run.mjs"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@instant.dev/api": "latest",
+    "dotenv": "latest",
+    "mocha": "latest",
+    "chai": "latest"
+  }
+}
