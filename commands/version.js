@@ -1,6 +1,5 @@
 const { Command } = require('cmnd');
 
-const loadFunct = require('../helpers/load_funct.js');
 const verifyPackages = require('../helpers/verify_packages.js');
 
 class VersionCommand extends Command {
@@ -20,7 +19,6 @@ class VersionCommand extends Command {
 
   async run (params) {
 
-    // await loadFunct(params, true);
     const verifiedPackages = await verifyPackages();
     console.log(verifiedPackages);
 

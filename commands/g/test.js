@@ -25,7 +25,7 @@ class GenerateTestCommand extends Command {
 
     const Funct = await loadFunct(params, true);
 
-    let specificity = [params.args[0], params.vflags.endpoint];
+    let specificity = [params.args[0], params.vflags.endpoint[0]];
     let submitted = specificity.filter(v => v);
     if (!submitted.length) {
       throw new Error(`Must specify one of "test_name" or "--endpoint"`);
