@@ -13,7 +13,7 @@ class LoginCommand extends Command {
 
   help () {
     return {
-      description: 'Registers a new user account with the funct.me registry',
+      description: 'Login to the funct.me registry',
       args: [],
       flags: {},
       vflags: {
