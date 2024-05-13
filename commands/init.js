@@ -57,7 +57,7 @@ class InitCommand extends Command {
 
   help () {
     return {
-      description: 'Initialize a new funct.me project with a ["development"]["main"] database',
+      description: 'Initialize a new funct.me project',
       args: [],
       flags: {},
       vflags: {

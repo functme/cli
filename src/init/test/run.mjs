@@ -38,7 +38,7 @@ if (args[0]) {
   await testEngine.runAll();
 }
 
-// (5) Finish; close Gateway and disconnect from database
+// (5) Finish; close Gateway
 // Receive arguments from .setup()
 testEngine.finish(async ({ gateway }) => {
   gateway.close();
