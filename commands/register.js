@@ -24,6 +24,11 @@ class RegisterCommand extends Command {
 
   async run (params) {
 
+    const host = (params.flags.h || [])[0] || constants.BASE_URL;
+    if (!host.startsWith('http://') && !host.startsWith('https://')) {
+      host = `https://${host}`;
+    }
+
     let registerResult = await inquirer.prompt([
       {
         name: 'email',
@@ -50,7 +55,7 @@ class RegisterCommand extends Command {
     ]);
 
     let result = await io.post(
-      `${constants.BASE_URL}/users`,
+      `${host}/users`,
       null,
       null,
       registerResult
@@ -87,7 +92,9 @@ class RegisterCommand extends Command {
       this,
       {
         args: [],
-        flags: {},
+        flags: {
+          h: params.flags.h
+        },
         vflags: {
           email: [user.email],
           password: [registerResult.password]

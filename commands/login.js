@@ -3,6 +3,7 @@ const io = require('io');
 const colors = require('colors/safe');
 const inquirer = require('inquirer');
 
+const SettingsManager = require('../helpers/settings_manager.js');
 const constants = require('../helpers/constants.js');
 
 class LoginCommand extends Command {
@@ -24,6 +25,11 @@ class LoginCommand extends Command {
   }
 
   async run (params) {
+
+    const host = (params.flags.h || [])[0] || constants.BASE_URL;
+    if (!host.startsWith('http://') && !host.startsWith('https://')) {
+      host = `https://${host}`;
+    }
 
     let email = ((params.vflags.email || [])[0] || '').trim();
     let password = ((params.vflags.password || [])[0] || '').trim();
@@ -67,7 +73,7 @@ class LoginCommand extends Command {
     };
 
     let result = await io.post(
-      `${constants.BASE_URL}/auth`,
+      `${host}/auth`,
       null,
       null,
       sendParams
@@ -101,7 +107,13 @@ class LoginCommand extends Command {
     console.log(`${colors.bold(`login at`)}:   ${token.created_at}`);
     console.log();
 
-    // key is token.key
+    const data = {email: sendParams['username'], key: token.key};
+    if (host !== constants.BASE_URL) {
+      data.host = host;
+    }
+
+    // Write settings
+    SettingsManager.write(data);
 
     return void 0;
 

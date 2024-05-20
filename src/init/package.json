@@ -2,7 +2,7 @@
   "name": "@/not_npm_project",
   "private": false,
   "scripts": {
-    "start": "node funct.mjs",
+    "start": "node serve.funct.mjs",
     "test": "mocha test/run.mjs"
   },
   "dependencies": {},
