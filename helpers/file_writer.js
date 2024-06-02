@@ -4,14 +4,6 @@ const colors = require('colors/safe');
 
 module.exports = {
 
-  determineDeployTarget () {
-    if (fs.existsSync('.vercel')) {
-      return 'vercel';
-    } else {
-      return 'default';
-    }
-  },
-
   readRecursive (root, files = {}, prefix = '', pathname = '') {
     files = files || {};
     let filenames = fs.readdirSync(path.join(root, pathname));
@@ -35,6 +27,9 @@ module.exports = {
     if (!filename.startsWith('.')) {
       filename = `./${filename}`;
     }
+    // e.g. __.gitignore becomes .gitignore
+    // this prevents unintended behavior in this repo from .env, .gitignore files and more
+    filename = filename.replaceAll('/__.', '/.');
     console.log(colors.bold.black(`FileWriter:`) +  ` Writing file "${filename}" ...`);
     let paths = filename.split('/').slice(1, -1);
     for (let i = 1; i <= paths.length; i++) {
