@@ -24,9 +24,11 @@ class RegisterCommand extends Command {
 
   async run (params) {
 
-    const host = (params.flags.h || [])[0] || constants.BASE_URL;
+    let host = (params.flags.h || [])[0] || constants.BASE_URL;
     if (!host.startsWith('http://') && !host.startsWith('https://')) {
-      host = `https://${host}`;
+      host = host.startsWith('localhost')
+        ? `http://${host}`
+        : `https://${host}`
     }
 
     let registerResult = await inquirer.prompt([
@@ -84,7 +86,7 @@ class RegisterCommand extends Command {
     const user = result.data; // grab json {data:}
 
     console.log();
-    console.log(colors.bold(`Registed for ${colors.green('funct.me')} successfully!`));
+    console.log(colors.bold(`${colors.blue(`Registered`)} for ${colors.green('funct.me')} successfully!`));
     console.log(`${colors.bold(`email`)}:      ${user.email}`);
     console.log(`${colors.bold(`created at`)}: ${user.created_at}`);
 

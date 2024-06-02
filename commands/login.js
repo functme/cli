@@ -26,9 +26,11 @@ class LoginCommand extends Command {
 
   async run (params) {
 
-    const host = (params.flags.h || [])[0] || constants.BASE_URL;
+    let host = (params.flags.h || [])[0] || constants.BASE_URL;
     if (!host.startsWith('http://') && !host.startsWith('https://')) {
-      host = `https://${host}`;
+      host = host.startsWith('localhost')
+        ? `http://${host}`
+        : `https://${host}`
     }
 
     let email = ((params.vflags.email || [])[0] || '').trim();
@@ -102,7 +104,7 @@ class LoginCommand extends Command {
     const token = result.data; // grab json {data:}
 
     console.log();
-    console.log(colors.bold(`Logged in to ${colors.green('funct.me')} successfully!`));
+    console.log(colors.bold(`${colors.cyan(`Logged in`)} to ${colors.green('funct.me')} successfully!`));
     console.log(`${colors.bold(`email`)}:      ${sendParams['username']}`);
     console.log(`${colors.bold(`login at`)}:   ${token.created_at}`);
     console.log();
