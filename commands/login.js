@@ -43,14 +43,7 @@ class LoginCommand extends Command {
       inquireList.push({
         name: 'username',
         type: 'input',
-        message: `E-mail`,
-        validate: e => {
-          if (!e.match(/^[^@]+@[^@]+\.[a-z0-9\-]+$/gi)) {
-            return 'Must be a valid e-mail address';
-          } else {
-            return true;
-          }
-        }
+        message: `E-mail / username`
       });
     } else {
       requestParams['username'] = email;
@@ -101,15 +94,19 @@ class LoginCommand extends Command {
       );
     }
 
-    const token = result.data; // grab json {data:}
+    const user = result.data; // grab json {data:}
+    const token = user.accessTokens[0];
 
     console.log();
     console.log(colors.bold(`${colors.cyan(`Logged in`)} to ${colors.green('funct.me')} successfully!`));
-    console.log(`${colors.bold(`email`)}:      ${sendParams['username']}`);
-    console.log(`${colors.bold(`login at`)}:   ${token.created_at}`);
+    console.log(`${colors.bold(`email`)}:    ${user.email}`);
+    if (user.memberships && user.memberships.length) {
+      console.log(`${colors.bold(`username`)}: ${user.memberships[0].organization.name}`);
+    }
+    console.log(`${colors.bold(`login at`)}: ${token.created_at}`);
     console.log();
 
-    const data = {email: sendParams['username'], key: token.key};
+    const data = {email: user.email, key: token.key};
     if (host !== constants.BASE_URL) {
       data.host = host;
     }

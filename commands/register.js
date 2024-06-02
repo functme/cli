@@ -45,6 +45,21 @@ class RegisterCommand extends Command {
         }
       },
       {
+        name: 'organization_name',
+        type: 'input',
+        message: `Username`,
+        validate: v => {
+          if (
+            v.match(/[a-z][a-z0-9\-]*[a-z0-9]/i) &&
+            v.indexOf('--') === -1
+          ) {
+            return true;
+          } else {
+            return 'must start with a letter, end with a letter or number, and contain only A-Z, a-z, 0-9 or -';
+          }
+        }
+      },
+      {
         name: 'password',
         type: 'password',
         message: `Password`
@@ -88,6 +103,7 @@ class RegisterCommand extends Command {
     console.log();
     console.log(colors.bold(`${colors.blue(`Registered`)} for ${colors.green('funct.me')} successfully!`));
     console.log(`${colors.bold(`email`)}:      ${user.email}`);
+    console.log(`${colors.bold(`username`)}:   ${user.memberships[0].organization.name}`);
     console.log(`${colors.bold(`created at`)}: ${user.created_at}`);
 
     return LoginCommand.prototype.run.call(
