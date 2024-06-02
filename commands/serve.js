@@ -48,7 +48,7 @@ class ServeCommand extends Command {
           const lines = fs.readFileSync(`.env`)
             .toString()
             .split('\n')
-            .filter(line => !!line.trim());
+            .filter(line => !!line.trim() && !line.trim().startsWith('#'));
           for (const line of lines) {
             const key = line.split('=')[0];
             const value = line.split('=').slice(1).join('=');

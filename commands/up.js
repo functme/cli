@@ -145,7 +145,7 @@ class UpCommand extends Command {
         fs.readFileSync(path.join(process.cwd(), '.functignore')).toString()
           .split('\n')
           .map(line => line.trim())
-          .filter(line => !!line)
+          .filter(line => !!line && !line.trim().startsWith('#'))
       );
     }
     ignore = ignore.map(v => v.endsWith('/') ? `${v}*` : v);
