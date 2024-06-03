@@ -23,7 +23,6 @@ class MeCommand extends Command {
   async run (params) {
 
     const settings = SettingsManager.read(true);
-
     const host = settings.activeProfile.host || constants.BASE_URL;
 
     console.log();

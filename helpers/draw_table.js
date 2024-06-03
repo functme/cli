@@ -96,7 +96,16 @@ const renderLine = (columns, rows, index, color) => {
 };
 
 module.exports = {
-  renderLine,
+  render: (columns, rows, color = 'grey') => {
+    console.log([].concat(
+      '  ' + renderLine(columns, rows, 'top', color),
+      rows.map((row, i) => {
+        return '  ' + renderLine(columns, rows, i, color);
+      }),
+      '  ' + renderLine(columns, rows, 'bottom', color)
+    ).join('\n'));
+    return true;
+  },
   selectIndexFromTable: async (title, columns, rows, color = 'grey') => {
     const result = await inquirer.prompt([
       {
