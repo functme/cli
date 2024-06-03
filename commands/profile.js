@@ -38,32 +38,16 @@ class ProfileCommand extends Command {
       };
     });
 
-    let result = await inquirer.prompt([
-      {
-        name: 'profileIndex',
-        type: 'list',
-        message: 'Choose your active profile',
-        loop: false,
-        pageSize: 100,
-        choices: [].concat(
-          new inquirer.Separator(
-            DrawTable.renderLine(columns, rows, 'top', 'grey')
-          ),
-          rows.map((_, i) => {
-            return {
-              name: DrawTable.renderLine(columns, rows, i, 'grey'),
-              value: i
-            }
-          }),
-          new inquirer.Separator(
-            DrawTable.renderLine(columns, rows, 'bottom', 'grey')
-          )
-        )
-      }
-    ]);
+    const index = await DrawTable.selectIndexFromTable(
+      'Choose your active profile',
+      columns,
+      rows
+    );
 
     console.log();
-    SettingsManager.write(profiles[result.profileIndex]);
+    if (index !== -1) {
+      SettingsManager.write(profiles[index]);
+    }
 
     return void 0;
 
