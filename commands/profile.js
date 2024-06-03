@@ -3,6 +3,7 @@ const colors = require('colors/safe');
 const inquirer = require('inquirer');
 
 const SettingsManager = require('../helpers/settings_manager.js');
+const DrawTable = require('../helpers/draw_table.js');
 
 class ProfileCommand extends Command {
 
@@ -26,21 +27,38 @@ class ProfileCommand extends Command {
 
     console.log();
 
+    const columns = ['email', 'host', 'active'];
+    const rows = profiles.map((p, i) => {
+      return {
+        email: p.email,
+        host: p.host || '',
+        active: i === 0
+          ? colors.bold.green('yes')
+          : ''
+      };
+    });
+
     let result = await inquirer.prompt([
       {
         name: 'profileIndex',
         type: 'list',
         message: 'Choose your active profile',
-        choices: profiles.map((profile, i) => {
-          return {
-            name: (
-                profile.email +
-                (profile.host ? ` (host: ${profile.host})` : ``) +
-                (!i ? colors.bold.green(` [active]`) : ``)
-              ),
-            value: i
-          }
-        })
+        loop: false,
+        pageSize: 100,
+        choices: [].concat(
+          new inquirer.Separator(
+            DrawTable.renderLine(columns, rows, 'top', 'grey')
+          ),
+          rows.map((_, i) => {
+            return {
+              name: DrawTable.renderLine(columns, rows, i, 'grey'),
+              value: i
+            }
+          }),
+          new inquirer.Separator(
+            DrawTable.renderLine(columns, rows, 'bottom', 'grey')
+          )
+        )
       }
     ]);
 
