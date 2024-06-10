@@ -71,15 +71,17 @@ const renderLine = (columns, rows, index, color) => {
       outlineColorize(`┤`)
     );
   } else if (index === -1) {
-    const length = columnData.reduce((sum, c) => {
-      return sum + c.maxLength + minPad * 2;
-    }, 0);
+    const length = Math.max(0, columnData.reduce((sum, c) => {
+      return sum + (c.maxLength + minPad * 2 + 1); // outline
+    }, -(1 + minPad * 2))); // -2 for left / right minPad
     const item = `${colors.bold.red('x')} cancel`;
     return (
-      colorize(`│ `) +
+      colorize(`│`) +
+      Array(minPad).fill(' ').join('') +
       item + 
       Array(length - stripColors(item).length).fill(' ').join('') +
-      colorize(` │`)
+      Array(minPad).fill(' ').join('') +
+      colorize(`│`)
     );
   } else {
     return (

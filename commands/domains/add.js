@@ -32,7 +32,7 @@ class DomainsAddCommand extends Command {
         type: 'input',
         message: `Hostname`,
         validate: e => {
-          if (!e.match(/^([a-z0-9\-].)+[a-z0-9\-]$/gi)) {
+          if (!e.match(/^([a-z0-9\-]+.)+[a-z0-9\-]+$/gi)) {
             return 'Must be a valid hostname'
           } else {
             return true;
