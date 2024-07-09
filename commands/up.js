@@ -231,6 +231,13 @@ class UpCommand extends Command {
       } else {
         throw new Error(`Invalid response from server: statusCode ${upResult.statusCode}`);
       }
+    } else if (upResult.data?.packageVersions?.[0]?.packageDeployments?.[0]?.error_json) {
+      const errorJSON = upResult.data?.packageVersions[0].packageDeployments[0].error_json;
+      const error = new Error(errorJSON.message);
+      if (errorJSON.details) {
+        error.details = errorJSON.details;
+      }
+      throw error;
     }
 
     const time = new Date().valueOf() - t0;
