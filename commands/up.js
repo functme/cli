@@ -204,7 +204,7 @@ class UpCommand extends Command {
         {
           name: name,
           environment: env,
-          timeout: Math.max(1, Math.min(parseInt(functJSON.timeout) || 0), 10),
+          timeout: Math.max(1, Math.min(parseInt(functJSON.timeout) || 0), 900),
           tarball: {_base64: result.toString('base64')},
           _stream: true
         },
