@@ -81,8 +81,8 @@ class DomainsAddCommand extends Command {
     }
 
     const customDomain = result.data;
-    const packageName = `@${customDomain.packageVersion.package.organization.name}/${customDomain.packageVersion.package.name}`;
-    const environment = customDomain.packageVersion.environment;
+    const packageName = `@${customDomain.package.organization.name}/${customDomain.package.name}`;
+    const environment = customDomain.environment;
 
     console.log();
     console.log(`${colors.bold.green('Success!')} Custom domain created.`);

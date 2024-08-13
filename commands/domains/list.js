@@ -48,8 +48,9 @@ class DomainsListCommand extends Command {
     ];
 
     const rows = customDomains.map(customDomain => {
-      const packageName = `@${customDomain.packageVersion.package.organization.name}/${customDomain.packageVersion.package.name}`;
-      const environment = customDomain.packageVersion.environment;
+      console.log(customDomain);
+      const packageName = `@${customDomain.package.organization.name}/${customDomain.package.name}`;
+      const environment = customDomain.environment;
       return {
         hostname: customDomain.hostname,
         package: packageName,
