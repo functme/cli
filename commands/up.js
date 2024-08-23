@@ -240,11 +240,12 @@ class UpCommand extends Command {
       throw error;
     }
 
+    const url = upResult.data.version_urls[env];
     const time = new Date().valueOf() - t0;
 
     console.log();
     console.log(`${colors.bold.green('Success:')} ${colors.bold(name)} deployed to ${colors.bold.grey(env)} in ${time} ms!`);
-    console.log(` => ${colors.bold.blue(`https://${env}--${name.split('/')[1]}--${name.split('/')[0].slice(1)}.funct.sh/`)}`);
+    console.log(` => ${colors.bold.blue(url)}`);
     console.log();
 
     return void 0;
