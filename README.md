@@ -7,7 +7,7 @@ available at [funct.me/packages](https://funct.me/packages).
 ## What is Funct?
 
 Funct is an AI bot hosting service (beta) that allows you to build
-ChatGPT-powered bots for Discord that can be extended to perform
+ChatGPT-powered bots for Discord. These bots can be extended to perform
 specific actions with custom functions aka "functs". Multiple functions
 can be packaged together in a single service, referred to as a
 [package](https://funct.me/packages).
