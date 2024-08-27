@@ -38,19 +38,19 @@ You can run `funct help` at any time to see available commands.
 # Table of contents
 
 1. [How does Funct work?](#how-does-funct-work)
-  1. [Is this free or paid](#is-this-free-or-paid)
+   1. [Is this free or paid](#is-this-free-or-paid)
 1. [Building custom packages for your bots](#building-custom-packages-for-your-bots)
-  1. [Initialize a project](#initialize-a-project)
-    1. [Defining actions aka endpoints aka functs](#defining-actions-aka-endpoints-aka-functs)
-    1. [Endpoint name, description, types](#endpoint-name-description-types)
-  1. [Deploy a Funct package](#deploy-a-funct-package)
-    1. [Public packages](#public-packages)
-    1. [Private packages](#private-packages)
+   1. [Initialize a project](#initialize-a-project)
+      1. [Defining actions aka endpoints aka functs](#defining-actions-aka-endpoints-aka-functs)
+      1. [Endpoint name, description, types](#endpoint-name-description-types)
+   1. [Deploy a Funct package](#deploy-a-funct-package)
+      1. [Public packages](#public-packages)
+      1. [Private packages](#private-packages)
 1. [Additional tools](#additional-tools)
-  1. [Generate endpoints](#generate-endpoints)
-  1. [Generate tests](#generate-tests)
-  1. [Run tests](#run-tests)
-  1. [Environment variables](#environment-variables)
+   1. [Generate endpoints](#generate-endpoints)
+   1. [Generate tests](#generate-tests)
+   1. [Run tests](#run-tests)
+   1. [Environment variables](#environment-variables)
 1. [Roadmap](#roadmap)
 1. [Contact](#contact)
 
@@ -66,13 +66,13 @@ three major components.
 It works like this;
 
 1. You connect Funct to your Discord server as a **discord link**
-  - The bot can be unlinked and / or kicked at any time
-  - Trigger your bot by `@mention` e.g. `@Funct hello there!`
+   - The bot can be unlinked and / or kicked at any time
+   - Trigger your bot by `@mention` e.g. `@Funct hello there!`
 2. You assign an **agent** to your Discord server
-  - This can be programmed with a custom name, personality, and actions
-  - Agents can be tested independently via the [funct.me](https://funct.me) dashboard
+   - This can be programmed with a custom name, personality, and actions
+   - Agents can be tested independently via the [funct.me](https://funct.me) dashboard
 3. You develop and assign funct **packages** your agent can take action with
-  - These can be developed and shared publicly or privately
+   - These can be developed and shared publicly or privately
 4. Once you've assigned actions to your bot, it will intelligently
    decide how and when to use them based on what its asked
 
