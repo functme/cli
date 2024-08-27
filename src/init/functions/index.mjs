@@ -9,7 +9,7 @@
 export async function GET (username = 'new user') {
 
   return {
-    message: `Welcome to funct.me, ${username}!`
+    message: `Welcome to Funct, ${username}!`
   };
 
 };

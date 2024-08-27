@@ -19,7 +19,7 @@ const DEFAULT_IGNORE = [
   '.git',               // do not deploy git history
   '.DS_Store',          // do not deploy macOS files
   'package-lock.json',  // deps installed from package.json
-  'serve.funct.mjs'     // not used by funct.me registry; irrelevant
+  'serve.funct.mjs'     // not used by Funct registry; irrelevant
 ];
 
 function formatSize (size) {
@@ -81,7 +81,7 @@ class UpCommand extends Command {
 
   help () {
     return {
-      description: 'Deploys your project to the funct.me registry',
+      description: 'Deploys your project to the Funct registry',
       args: [],
       flags: {
         v: 'Verbose mode; print full details of packaging'

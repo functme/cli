@@ -1,7 +1,7 @@
 {
   "name": "funct.me",
-  "version": "0.0.6",
-  "description": "Funct.me Command Line Interface",
+  "version": "0.0.7",
+  "description": "Funct Command Line Tools",
   "main": "index.js",
   "files": [
     "/commands",

@@ -40,7 +40,7 @@ export default async function (setupResult) {
     expect(result.body).to.exist;
     expect(result.json).to.exist; // will exist on application/json responses
     expect(result.json.message).to.exist;
-    expect(result.json.message).to.equal(`Welcome to funct.me, ${testUsername}!`);
+    expect(result.json.message).to.equal(`Welcome to Funct, ${testUsername}!`);
 
   });
 

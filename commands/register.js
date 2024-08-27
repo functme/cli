@@ -15,7 +15,7 @@ class RegisterCommand extends Command {
 
   help () {
     return {
-      description: 'Registers a new user account with the funct.me registry',
+      description: 'Registers a new user account with the Funct registry',
       args: [],
       flags: {},
       vflags: {}
@@ -101,7 +101,7 @@ class RegisterCommand extends Command {
     const user = result.data; // grab json {data:}
 
     console.log();
-    console.log(colors.bold(`${colors.blue(`Registered`)} for ${colors.green('funct.me')} successfully!`));
+    console.log(colors.bold(`${colors.blue(`Registered`)} for ${colors.green('Funct')} successfully!`));
     console.log(`${colors.bold(`email`)}:      ${user.email}`);
     console.log(`${colors.bold(`username`)}:   ${user.memberships[0].organization.name}`);
     console.log(`${colors.bold(`created at`)}: ${user.created_at}`);

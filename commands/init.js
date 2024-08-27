@@ -57,7 +57,7 @@ class InitCommand extends Command {
 
   help () {
     return {
-      description: 'Initialize a new funct.me project',
+      description: 'Initialize a new Funct project',
       args: [],
       flags: {},
       vflags: {
@@ -74,7 +74,7 @@ class InitCommand extends Command {
     console.log(
       drawBox.center(
         `blue`,
-        `Welcome to ${colors.bold.green('🤖 funct.me')}!`,
+        `Welcome to ${colors.bold.green('🤖 Funct')}!`,
       )
     );
 
@@ -82,7 +82,7 @@ class InitCommand extends Command {
     const functExists = fs.existsSync('funct.json');
 
     console.log();
-    console.log(`🪄 You are about to initialize ${colors.bold('funct.me')} in the current directory:`)
+    console.log(`🪄 You are about to initialize ${colors.bold('Funct')} in the current directory:`)
     console.log(`   📂 ${colors.dim(process.cwd())}`);
     console.log();
     if ((pkgExists || functExists) && !force) {
@@ -192,7 +192,7 @@ class InitCommand extends Command {
       drawBox.left(
         `green`,
         ``,
-        colors.bold.green(`Success:`) + ` ${colors.bold(`funct.me`)} initialized!`,
+        colors.bold.green(`Success:`) + ` ${colors.bold(`Funct`)} initialized!`,
         `Here are some helpful commands to get started:`,
         ``,
         `(1) Create a set of endpoints for a path (create, read, update, destroy):`,
@@ -200,7 +200,7 @@ class InitCommand extends Command {
         `(2) Run your dev server:`,
         colors.grey.bold(`     $ funct serve`),
         ``,
-        `For more information about ${colors.bold(`funct.me`)}:`,
+        `For more information about ${colors.bold(`Funct`)}:`,
         `     Home    => ${colors.bold.underline.blue('https://funct.me')}`,
         `     GitHub  => ${colors.bold.underline.blue('https://github.com/functme')}`,
         `     Discord => ${colors.bold.underline.blue('https://discord.gg/puVYgA7ZMh')}`,

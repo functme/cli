@@ -45,7 +45,7 @@ module.exports = async (params = null, validate = false) => {
   if (!fs.existsSync(dotenvPathname)) {
     if (validate) {
       throw new Error(
-        `dotenv should be installed in this directory to use funct.me locally.\n` +
+        `dotenv should be installed in this directory to use Funct locally.\n` +
         `Run \`$ npm i dotenv --save-dev\` to install the latest version`
       );
     }
@@ -58,7 +58,7 @@ module.exports = async (params = null, validate = false) => {
   if (!fs.existsSync(pathname)) {
     if (validate) {
       throw new Error(
-        `@instant.dev/api should be installed in this directory to use funct.me locally.\n` +
+        `@instant.dev/api should be installed in this directory to use Funct locally.\n` +
         `Run \`$ npm i @instant.dev/api --save-dev\` to install the latest version`
       );
     }

@@ -27,7 +27,7 @@ class ServeCommand extends Command {
     const Funct = await loadFunct(params, true);
 
     console.log();
-    console.log(`Running ${colors.green.bold('funct.me')} development server ...`);
+    console.log(`Running ${colors.green.bold('Funct')} development server ...`);
     const pkgExists = fs.existsSync('package.json');
     if (pkgExists) {
       let pkg;

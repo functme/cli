@@ -1,4 +1,4 @@
-## Funct.me
+## Funct.me Command Line Tools
 
 To do
 

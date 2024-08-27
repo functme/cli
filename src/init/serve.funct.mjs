@@ -1,8 +1,8 @@
 /**
- * This file is ** NOT ** used in production on the funct.me registry
- * Any code you change here ** WILL NOT ** run when hosted with funct.me
+ * This file is ** NOT ** used in production on the Funct registry
+ * Any code you change here ** WILL NOT ** run when hosted with Funct
  * 
- * However, it used for local development and allows you to ship your funct.me
+ * However, it used for local development and allows you to ship your Funct
  * service to any host which relies on `package.json["scripts"]["start"]`.
  */
 

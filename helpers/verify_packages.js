@@ -17,13 +17,13 @@ module.exports = async (print = false) => {
   }
   const packages = [
     {
-      title: 'Funct.me CLI',
+      title: 'Funct CLI',
       name: pkgs.self.name,
       version: pkgs.self.version,
       global: true
     },
     {
-      title: 'Funct.me Gateway (Instant API)',
+      title: 'Funct Gateway (Instant API)',
       name: pkgs.api ? pkgs.api.name : null,
       version: pkgs.api ? pkgs.api.version : null,
       dev: true
@@ -63,7 +63,7 @@ module.exports = async (print = false) => {
       drawBox.center(
         `yellow`,
         ``,
-        `Updates are available for ${colors.bold('funct.me')}:`,
+        `Updates are available for ${colors.bold('Funct')}:`,
         ``,
         ...updatePackages.map(pkg => {
           return [

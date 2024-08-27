@@ -14,7 +14,7 @@ class LoginCommand extends Command {
 
   help () {
     return {
-      description: 'Login to the funct.me registry',
+      description: 'Login to the Funct registry',
       args: [],
       flags: {},
       vflags: {
@@ -98,7 +98,7 @@ class LoginCommand extends Command {
     const token = user.accessTokens[0];
 
     console.log();
-    console.log(colors.bold(`${colors.cyan(`Logged in`)} to ${colors.green('funct.me')} successfully!`));
+    console.log(colors.bold(`${colors.cyan(`Logged in`)} to ${colors.green('Funct')} successfully!`));
     console.log(`${colors.bold(`email`)}:    ${user.email}`);
     if (user.memberships && user.memberships.length) {
       console.log(`${colors.bold(`username`)}: ${user.memberships[0].organization.name}`);
