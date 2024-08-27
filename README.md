@@ -74,7 +74,7 @@ It works like this;
 3. You develop and assign funct **packages** your agent can take action with
    - These can be developed and shared publicly or privately
 4. Once you've assigned actions to your bot, it will intelligently
-   decide how and when to use them based on what its asked
+   decide how and when to use them based on what it is asked
 
 ## Is this free or paid?
 
