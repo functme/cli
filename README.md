@@ -30,6 +30,7 @@ $ cd new-project
 $ funct init  # initialize funct project in this directory
 $ funct login # log in to funct
 $ funct serve # run your functs on a local serve to test
+$ funct run / # test a single endpoint (like curl)
 $ funct up    # publish to development environment
 ```
 
@@ -116,7 +117,11 @@ Funct locally;
 $ funct serve
 ```
 
-Will start an HTTP server.
+Will start an HTTP server. To execute a standalone function:
+
+```shell
+$ funct run /
+```
 
 ### Defining actions aka endpoints aka functs
 
@@ -233,7 +238,7 @@ $ funct g:test --endpoint my-endpoint/example
 You can write tests for your functs to verify they work. Simply run;
 
 ```shell
-$ instant test
+$ funct test
 ```
 
 And voila!
