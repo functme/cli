@@ -1,11 +1,23 @@
 const { Command } = require('cmnd');
 const colors = require('colors/safe');
 const io = require('io');
+const kill = require('tree-kill');
 
 const loadFunct = require('../helpers/load_funct.js');
 const localServer = require('../helpers/local_server.js');
 
 const sleep = t => new Promise(r => setTimeout(() => r(1), t));
+const killProcess = pid => {
+  return new Promise((resolve, reject) => {
+    kill(pid, (err) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(true);
+      }
+    });
+  });
+};
 
 class RunCommand extends Command {
 
@@ -78,7 +90,7 @@ class RunCommand extends Command {
     await Promise.race([
       (async () => {
         await sleep(timeout);
-        proc.kill();
+        await killProcess(proc.pid);
         throw new Error(
           `Timed out waiting for development server.\n` +
           `Are you sure you're not running another server on :${port}?\n` +
@@ -118,7 +130,7 @@ class RunCommand extends Command {
     }
 
     // Terminate process
-    proc.kill();
+    await killProcess(proc.pid);
     if (params.flags.v) {
       console.log(colors.bold.green('location:  ') + `${url}/${pathname}`);
       console.log(colors.bold.green('method:    ') + method.toUpperCase());
