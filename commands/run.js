@@ -107,17 +107,40 @@ class RunCommand extends Command {
     ]);
 
     const queryParams = (method === 'get' || method === 'delete')
-      ? functionParams
+      ? { ...functionParams }
       : {};
+    queryParams._debug = true;
     const bodyParams = (method === 'post' || method === 'put')
       ? JSON.stringify(functionParams)
       : '';
-    const result = await io.request(
+    
+    let result;
+    const streamResult = await io.request(
       method.toUpperCase(),
       `${url}/${pathname}`,
       queryParams,
       {},
       bodyParams,
+      ({id, event, data}) => {
+        let json;
+        try {
+          json = JSON.parse(data);
+        } catch (e) {
+          // do nothing, return
+          return;
+        }
+        if (event === '@response') {
+          result = json;
+        } else if (event === '@stdout') {
+          json.split('\n').forEach(line => {
+            console.log(colors.grey(`${params.flags.v ? colors.bold(`stdout> `) : ''}${line}`));
+          });
+        } else if (event === '@stderr') {
+          json.split('\n').forEach(line => {
+            console.log(colors.yellow(`${params.flags.v ? colors.bold(`stderr> `) : ''}${line}`));
+          });
+        }
+      }
     );
 
     // retrieve details
