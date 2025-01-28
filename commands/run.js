@@ -25,7 +25,7 @@ class RunCommand extends Command {
     super('run');
   }
 
-  help () {
+  help() {
     return {
       description: 'Runs a function in the local project',
       args: [],
@@ -39,7 +39,7 @@ class RunCommand extends Command {
     };
   }
 
-  async run (params) {
+  async run(params) {
 
     // Use 8199 for test runs
     const Funct = await loadFunct(params, true);
@@ -77,11 +77,13 @@ class RunCommand extends Command {
     }
 
     const proc = localServer.run({ port, isBackground: true });
-    
     let isConnected = false;
     proc.stdout.on('data', data => {
       const message = data.toString();
+
       if (message.includes(`*** Listening on localhost:${port}`)) {
+        isConnected = true;
+      } else if (message.includes(`Unable to spawn HTTP Workers, listening on port ${port}`)) {
         isConnected = true;
       }
     });
@@ -113,7 +115,7 @@ class RunCommand extends Command {
     const bodyParams = (method === 'post' || method === 'put')
       ? JSON.stringify(functionParams)
       : '';
-    
+
     let result;
     const streamResult = await io.request(
       method.toUpperCase(),
@@ -121,7 +123,7 @@ class RunCommand extends Command {
       queryParams,
       {},
       bodyParams,
-      ({id, event, data}) => {
+      ({ id, event, data }) => {
         let json;
         try {
           json = JSON.parse(data);
@@ -142,6 +144,19 @@ class RunCommand extends Command {
         }
       }
     );
+
+    // Handle non-event errors given by server
+    if (streamResult.statusCode === 500) {
+      const errorBody = streamResult.body.toString();
+      let errorMessage = errorBody;
+      // cut out the "Application Error: " prefix and only capture the first line
+      if (errorBody.startsWith('Application Error:')) {
+        errorMessage = errorBody.slice('Application Error: '.length);
+      }
+      // ignore the stack trace
+      errorMessage = errorMessage.split('\n')[0];
+      throw new Error(errorMessage);
+    }
 
     // retrieve details
     const body = result.body.toString();
