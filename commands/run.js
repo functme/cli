@@ -83,9 +83,7 @@ class RunCommand extends Command {
 
       if (message.includes(`*** Listening on localhost:${port}`)) {
         isConnected = true;
-      }
-
-      if (message.includes(`Unable to spawn HTTP Workers, listening on port ${port}`)) {
+      } else if (message.includes(`Unable to spawn HTTP Workers, listening on port ${port}`)) {
         isConnected = true;
       }
     });
@@ -150,10 +148,14 @@ class RunCommand extends Command {
     // Handle non-event errors given by server
     if (streamResult.statusCode === 500) {
       const errorBody = streamResult.body.toString();
-      // Only halt on application errors
+      let errorMessage = errorBody;
+      // cut out the "Application Error: " prefix and only capture the first line
       if (errorBody.startsWith('Application Error:')) {
-        throw new Error(errorBody);
+        errorMessage = errorBody.slice('Application Error: '.length);
       }
+      // ignore the stack trace
+      errorMessage = errorMessage.split('\n')[0];
+      throw new Error(errorMessage);
     }
 
     // retrieve details
