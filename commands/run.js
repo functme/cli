@@ -81,7 +81,11 @@ class RunCommand extends Command {
     proc.stdout.on('data', data => {
       const message = data.toString();
 
-      if (message.includes(`*** Listening on localhost:${port}`) || message.includes(`listening on port ${port}`)) {
+      if (message.includes(`*** Listening on localhost:${port}`)) {
+        isConnected = true;
+      }
+
+      if (message.includes(`Unable to spawn HTTP Workers, listening on port ${port}`)) {
         isConnected = true;
       }
     });
@@ -146,7 +150,10 @@ class RunCommand extends Command {
     // Handle non-event errors given by server
     if (streamResult.statusCode === 500) {
       const errorBody = streamResult.body.toString();
-      throw new Error(errorBody);
+      // Only halt on application errors
+      if (errorBody.startsWith('Application Error:')) {
+        throw new Error(errorBody);
+      }
     }
 
     // retrieve details
